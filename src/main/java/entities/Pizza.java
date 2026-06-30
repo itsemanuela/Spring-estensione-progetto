@@ -2,9 +2,11 @@ package entities;
 
 
 
+import interfaces.ElementoMenu;
+
 import java.util.List;
 
-public class Pizza {
+public class Pizza implements ElementoMenu{
 
     private String name;
     private double price;
@@ -45,6 +47,15 @@ public class Pizza {
         this.toppings = toppings;
     }
 
+    @Override
+    public double getPrezzo() {
+        return this.price;
+    }
+
+    @Override
+    public String getNome() {
+        return this.name;
+    }
 
     @Override
     public String toString() {
@@ -55,5 +66,4 @@ public class Pizza {
                 ", toppings=" + toppings +
                 '}';
     }
-
 }

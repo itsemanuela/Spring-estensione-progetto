@@ -1,10 +1,9 @@
 package entities;
 
 
+import interfaces.ElementoMenu;
 
-
-
-public class Drink {
+public class Drink implements ElementoMenu {
     public String name;
     public double price;
     public int calories;
@@ -33,6 +32,16 @@ public class Drink {
    public int getCalories() {
         return calories;
    }
+
+    @Override
+    public double getPrezzo() {
+        return this.price;
+    }
+
+    @Override
+    public String getNome() {
+        return this.name;
+    }
 
     @Override
     public String toString() {

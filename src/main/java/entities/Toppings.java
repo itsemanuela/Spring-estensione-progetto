@@ -1,7 +1,9 @@
 package entities;
 
 
-public class Toppings {
+import interfaces.ElementoMenu;
+
+public class Toppings implements ElementoMenu {
     private final String name;
     private final double price;
     private final int calories;
@@ -23,6 +25,15 @@ public class Toppings {
         return calories;
     }
 
+    @Override
+    public double getPrezzo() {
+        return this.price;
+    }
+
+    @Override
+    public String getNome() {
+        return this.name;
+    }
 
     @Override
     public String toString() {
