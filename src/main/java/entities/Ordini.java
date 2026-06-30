@@ -2,11 +2,15 @@ package entities;
 
 import Enum.StatoOrdine;
 import interfaces.ElementoMenu;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalTime;
 import java.util.List;
 
 public class Ordini  {
+
+
+    private double costoCoperto;
 
     private int numeroOrdine;
     private StatoOrdine stato;
@@ -14,14 +18,14 @@ public class Ordini  {
     private LocalTime oraAcquisizione;
     private Tavoli tavoli;
     private List<ElementoMenu> elementoMenus;
-    private double costoCoperto;
+
 
     public Ordini(int numeroOrdine,
                   StatoOrdine stato,
                   int numeroCoperti,
                   LocalTime oraAcquisizione,
                   Tavoli tavoli,
-                  List<PubMenu> elementi,
+                  List<ElementoMenu> elementi,
                   double costoCoperto) {
 
         this.numeroOrdine = numeroOrdine;
@@ -73,5 +77,30 @@ public void setCostoCoperto(double costoCoperto) {
         this.costoCoperto = costoCoperto;
 }
 
+
+    public double calcolaTotale() {
+        // sommo il prezzo di tutti gli elementi con l'interfaccia
+        double sommaElementi = elementoMenus.stream()
+                .mapToDouble(ElementoMenu::getPrezzo)
+                .sum();
+
+        // sommo il costo del coperto moltiplicato per il numero di persone
+        return sommaElementi + (this.numeroCoperti * this.costoCoperto);
     }
+
+    @Override
+    public String toString() {
+        return "Ordini{" +
+                "costoCoperto=" + costoCoperto +
+                ", numeroOrdine=" + numeroOrdine +
+                ", stato=" + stato +
+                ", numeroCoperti=" + numeroCoperti +
+                ", oraAcquisizione=" + oraAcquisizione +
+                ", tavoli=" + tavoli +
+                ", elementoMenus=" + elementoMenus +
+                '}';
+    }
+}
+
+
 
