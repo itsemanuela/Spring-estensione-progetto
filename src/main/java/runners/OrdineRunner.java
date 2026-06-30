@@ -30,17 +30,26 @@ public class OrdineRunner implements CommandLineRunner, ApplicationContextAware 
     @Override
     public void run(String... args) throws Exception {
 
-
         PubMenu menu = ctx.getBean(PubMenu.class);
         menu.stampaMenu();
 
-        List<ElementoMenu> elementi = new ArrayList<>();
-        elementi.add(menu.pizzas.get(0));
+        // --- PRIMO ORDINE ---
+        List<ElementoMenu> lista1 = new ArrayList<>();
+        lista1.add(menu.pizzas.get(0)); // Aggiunge margherita
 
-        Tavoli t = new Tavoli(1, 4, StatoTavolo.LIBERO);
+        Tavoli t1 = new Tavoli(1, 4, StatoTavolo.LIBERO);
 
-        Ordini ordine = new Ordini(1, StatoOrdine.IN_CORSO, 2, LocalTime.now(), t, elementi, prezzoCoperto);
+        Ordini ordine1 = new Ordini(1, StatoOrdine.IN_CORSO, 2, LocalTime.now(), t1, lista1, prezzoCoperto);
+        ordine1.stampaDettaglioOrdine();
 
-        System.out.println("Totale: " + ordine.calcolaTotale());
+        // --- SECONDO ORDINE ---
+        List<ElementoMenu> lista2 = new ArrayList<>();
+        lista2.add(menu.pizzas.get(1)); //   hawaiana
+        lista2.add(menu.drinks.get(0)); //  acqua
+
+        Tavoli t2 = new Tavoli(2, 2, StatoTavolo.LIBERO);
+
+        Ordini ordine2 = new Ordini(2, StatoOrdine.SERVITO, 4, LocalTime.now(), t2, lista2, prezzoCoperto);
+        ordine2.stampaDettaglioOrdine();
     }
 }

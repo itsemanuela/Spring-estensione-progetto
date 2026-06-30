@@ -87,7 +87,31 @@ public void setCostoCoperto(double costoCoperto) {
         // sommo il costo del coperto moltiplicato per il numero di persone
         return sommaElementi + (this.numeroCoperti * this.costoCoperto);
     }
+    public void stampaDettaglioOrdine() {
+        System.out.println("----------------------------------------");
+        System.out.println("RIEPILOGO ORDINE N. " + this.numeroOrdine);
+        System.out.println("----------------------------------------");
 
+        //  ora
+        System.out.println("Ora acquisizione: " + this.oraAcquisizione);
+
+        //  stato e tavolo
+        System.out.println("Stato: " + this.stato);
+        System.out.println("Tavolo numero: " + this.tavoli.getNumero());
+
+        //  coperti
+        System.out.println("Numero coperti: " + this.numeroCoperti);
+
+        System.out.println("Articoli ordinati:");
+
+        for (ElementoMenu e : elementoMenus) {
+            System.out.println("- " + e.getNome() + ": " + e.getPrezzo() + " Euro");
+        }
+
+        System.out.println("----------------------------------------");
+        System.out.println("TOTALE COMPLESSIVO: " + this.calcolaTotale() + " Euro");
+        System.out.println("----------------------------------------");
+    }
     
 
     @Override
