@@ -25,7 +25,7 @@ public class Ordini  {
                   int numeroCoperti,
                   LocalTime oraAcquisizione,
                   Tavoli tavoli,
-                  List<ElementoMenu> elementi,
+                  List<ElementoMenu> elementoMenus,
                   double costoCoperto) {
 
         this.numeroOrdine = numeroOrdine;
@@ -87,6 +87,8 @@ public void setCostoCoperto(double costoCoperto) {
         // sommo il costo del coperto moltiplicato per il numero di persone
         return sommaElementi + (this.numeroCoperti * this.costoCoperto);
     }
+
+    
 
     @Override
     public String toString() {
