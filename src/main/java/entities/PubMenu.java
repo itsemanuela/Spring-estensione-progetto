@@ -1,7 +1,11 @@
 package entities;
 
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
+
+
 
 public class PubMenu {
     public List<Toppings> toppings;

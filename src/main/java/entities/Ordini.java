@@ -2,7 +2,7 @@ package entities;
 
 import Enum.StatoOrdine;
 import interfaces.ElementoMenu;
-import org.springframework.beans.factory.annotation.Value;
+
 
 import java.time.LocalTime;
 import java.util.List;
