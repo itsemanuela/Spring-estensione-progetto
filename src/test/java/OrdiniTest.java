@@ -1,7 +1,4 @@
-import entities.Drink;
-import entities.Ordini;
-import entities.Pizza;
-import entities.Tavoli;
+import entities.*;
 import interfaces.ElementoMenu;
 import org.junit.jupiter.api.BeforeEach;
 import Enum.StatoTavolo;
@@ -56,5 +53,43 @@ public class OrdiniTest {
         assertEquals(26.50, totale, 0.01);
     }
 
+
+    //calcolo pizza, drink e toppings senza coperto
+    @Test
+    @DisplayName("calcolo_pizza_drink_toppings_senza_coperto")
+            void calcoloSenzaCoperto(){
+        List<ElementoMenu> listaNoCoperto= new ArrayList<>();
+        listaNoCoperto.add(new Pizza("capricciosa", 9.50, 1250, new ArrayList<>()));
+        listaNoCoperto.add(new Drink("vino", 16.50, 850));
+        listaNoCoperto.add(new Toppings("funghi_chiodini", 3.50, 170));
+
+        Ordini ordini= new Ordini(4, StatoOrdine.IN_CORSO, 0, LocalTime.now(), tavoli, listaNoCoperto, costoCoperto);
+        double  totaleNoCoperto= ordini.calcolaTotale();
+
+        assertEquals(29.50, totaleNoCoperto, 0.01);
+
+
+    }
+
+    @Test
+    @DisplayName("metodo_senza_hardcodare_prezzi")
+    void calcoloDinamico(){
+        List<ElementoMenu> listaDinamica= new ArrayList<>();
+        Pizza pizza1 = new Pizza("marinara", 10.50, 450, new ArrayList<>());
+        Drink drink1= new Drink("vino", 6.50, 850) ;
+        Toppings top=new Toppings("funghi_chiodini", 3.50, 170);
+
+        listaDinamica.add(pizza1);
+        listaDinamica.add(drink1);
+        listaDinamica.add(top);
+
+        Ordini ordineDinamico= new Ordini(4, StatoOrdine.IN_CORSO, 0, LocalTime.now(), tavoli,listaDinamica, costoCoperto);
+
+        double tot_atteso= pizza1.getPrezzo() + drink1.getPrezzo() + top.getPrezzo();
+        double totale= ordineDinamico.calcolaTotale();
+
+        assertEquals(tot_atteso, totale, 0.01);
+
+    }
 
 }
