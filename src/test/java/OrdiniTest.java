@@ -1,3 +1,4 @@
+import entities.Drink;
 import entities.Ordini;
 import entities.Pizza;
 import entities.Tavoli;
@@ -41,6 +42,19 @@ public class OrdiniTest {
        assertEquals(17, totale, 0.01); //delta x num decimale
     }
 
+    @Test
+    @DisplayName("calcolo_costo_ordine_pizza_piu_drink")
+    void calcoloTotalePizzaDrink(){
+        List<ElementoMenu> listaMista=  new ArrayList<>();
+        listaMista.add(new Pizza("marinara", 6.50, 450, new ArrayList<>()));
+        listaMista.add(new Drink("birra", 7.50, 350));
+        int numeroCoperti2= 5;
+
+        Ordini ordini= new Ordini(10, StatoOrdine.IN_CORSO, numeroCoperti2, LocalTime.now(), tavoli, listaMista, costoCoperto );
+
+        double totale= ordini.calcolaTotale();
+        assertEquals(26.50, totale, 0.01);
+    }
 
 
 }
